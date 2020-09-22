@@ -14,5 +14,6 @@ Then to run tests:
 pytest . -vv -s 
 ```
 
-## TTL implementation (future improvement)
-To create a basic TTL policy for the cache (rather than using a read count policy), we can add a key/timestamp to a secondary `OrderedDict()`. Then when we request a given key, we can write a conditional to return it from the cache if the current date is less than 30 seconds after the item was added to the cache.
+## Future improvements
+* **TTL implementation:** To create a basic TTL policy for the cache (rather than using a read count policy), we can add a key/timestamp to a secondary `OrderedDict()`. Then when we request a given key, we can write a conditional to return it from the cache if the current date is less than 30 seconds after the item was added to the cache.
+* **Test coverage**: Add updated test coverage html report to repo automatically on merged PR using [pytest-cov](https://pypi.org/project/pytest-cov/).
