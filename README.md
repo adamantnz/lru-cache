@@ -13,3 +13,6 @@ Then to run tests:
 ```
 pytest . -vv -s 
 ```
+
+# TTL implementation
+To create a basic TTL policy for the cache (rather than using a read count policy), we can add a key/timestamp to a secondary `OrderedDict()`. Then when we request a given key, we can write a conditional to return it from the cache if the current date is less than 30 seconds after the item was added to the cache.
