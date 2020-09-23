@@ -43,6 +43,14 @@ class TestLRUCache:
         context.get("Michael")
         expected = OrderedDict([("Scotty", "Pippen"), ("Michael", "Jordan")])
         assert context.cache == expected
+        
+    def test_lru_item_is_removed_from_cache(self):
+        context = LRUCache(capacity=2)
+        context.set("Michael", "Jordan")
+        context.set("Scotty", "Pippen")
+        context.set("Dennis", "Rodman")
+        expected = OrderedDict([("Scotty", "Pippen"), ("Dennis", "Rodman")])
+        assert context.cache == expected
 
     def test_key_is_removed_from_lru_cache_after_accessed_10_times(self):
         context = LRUCache(capacity=5)
