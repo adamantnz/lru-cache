@@ -19,7 +19,7 @@ class LRUCache:
     def get(self, key: int) -> OrderedDict:
         """ parent method containing the logic to retrieve a given key from the cache """
         if key not in self.cache:
-            return None
+            return -1
         else:
             self.cache.move_to_end(key, last=True)
             self._validate_key_is_valid(key)
@@ -32,6 +32,7 @@ class LRUCache:
             self.cache_read_counter[key] = item_accessed_count + 1
             if self.cache_read_counter[key] >= self.max_number_cache_key_reads:
                 self._pop_key(key)
+                self.cache_read_counter[key] = 0
         except KeyError:
             # key is not in the read counter dict, so add it with a 0 counter
             self.cache_read_counter[key] = 0

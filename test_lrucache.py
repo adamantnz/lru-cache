@@ -60,3 +60,12 @@ class TestLRUCache:
             context.get("Michael")
         expected = OrderedDict([("Scotty", "Pippen")])
         assert context.cache == expected
+
+    def test_read_counter_is_reset_when_read_limit_reached(self):
+        context = LRUCache(capacity=1)
+        context.set("Michael", "Jordan")
+        for _ in range(11):
+            context.get("Michael") 
+        context.set("Michael", "Jordan")
+        context.get("Michael")
+        assert context.get("Michael") == OrderedDict([("Michael", "Jordan")])
